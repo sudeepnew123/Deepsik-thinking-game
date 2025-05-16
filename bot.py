@@ -118,13 +118,12 @@ async def end_game(chat_id: int, context: CallbackContext) -> None:
     game = games.pop(chat_id, None)
     if game:
         word = game['word']
-        await context.bot.send_message(
-            chat_id=chat_id,
-            text=f"🏁 Game khatam! Sahi word tha: {word}\n\n"
-                 f"Total attempts: {game['attempts']}\n"
-                 f"Total hints used: {len(game['hints']}"
-        )
-
+    await context.bot.send_message(
+    chat_id=chat_id,
+    text=f"🏁 Game khatam! Sahi word tha: {word}\n\n"
+         f"Total attempts: {game['attempts']}\n"
+         f"Total hints used: {len(game['hints'])}"  # Fixed line
+    )
 async def button_handler(update: Update, context: CallbackContext) -> None:
     query = update.callback_query
     await query.answer()
